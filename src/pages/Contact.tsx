@@ -16,7 +16,7 @@ export default function Contact() {
 
   const onSubmit = (data: ContactForm) => {
     console.log(data);
-    alert("Köszönjük! Az üzeneted sikeresen elküldted.");
+    alert("Köszönjük! Az üzeneted sikeresen elküldtük.");
     reset();
   };
 
@@ -26,59 +26,46 @@ export default function Contact() {
         Kapcsolat
       </h1>
 
-      <p className="text-center text-gray-500 mb-10">
-        Kérdésed van? Írj nekünk bátran!
+      <p className="text-center text-slate-500 mb-10">
+        Kérdésed van a projekttel kapcsolatban? Itt tudsz üzenetet küldeni.
       </p>
 
       <div className="grid md:grid-cols-2 gap-8">
-
-        {/* Bal oldal */}
-
         <div className="bg-blue-600 text-white rounded-3xl p-8 shadow-xl">
           <h2 className="text-2xl font-bold mb-6">
-            Elérhetőségek
+            Projektinformációk
           </h2>
 
           <div className="space-y-6">
-
             <div>
-              <h3 className="font-semibold">📧 Email</h3>
-              <p>fittrack@gmail.com</p>
+              <h3 className="font-semibold">Készítette</h3>
+              <p>Baranyi Eszter</p>
             </div>
 
             <div>
-              <h3 className="font-semibold">📍 Helyszín</h3>
-              <p>Budapest, Magyarország</p>
+              <h3 className="font-semibold">Projekt típusa</h3>
+              <p>React + TypeScript vizsgamunka</p>
             </div>
 
             <div>
-              <h3 className="font-semibold">📞 Telefon</h3>
-              <p>+36 30 123 4567</p>
+              <h3 className="font-semibold">Téma</h3>
+              <p>Fitness alkalmazás</p>
             </div>
 
             <div>
-              <h3 className="font-semibold">🕒 Elérhetőség</h3>
-              <p>Hétfő - Péntek</p>
-              <p>08:00 - 18:00</p>
+              <h3 className="font-semibold">Fő funkciók</h3>
+              <p>Edzésötletek, BMI kalkulátor, API-idézet, témaváltás</p>
             </div>
-
           </div>
         </div>
 
-        {/* Jobb oldal */}
-
-        <div className="bg-white rounded-3xl shadow-xl p-8">
-
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="space-y-5"
-          >
-
+        <div className="bg-white text-slate-900 rounded-3xl shadow-xl p-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <input
                 type="text"
                 placeholder="Név"
-                className="w-full border rounded-xl p-4"
+                className="w-full border rounded-xl p-4 bg-white text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 {...register("name", {
                   required: "A név megadása kötelező!",
                 })}
@@ -95,7 +82,7 @@ export default function Contact() {
               <input
                 type="email"
                 placeholder="Email cím"
-                className="w-full border rounded-xl p-4"
+                className="w-full border rounded-xl p-4 bg-white text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 {...register("email", {
                   required: "Az email megadása kötelező!",
                 })}
@@ -112,7 +99,7 @@ export default function Contact() {
               <textarea
                 rows={5}
                 placeholder="Üzenet..."
-                className="w-full border rounded-xl p-4"
+                className="w-full border rounded-xl p-4 bg-white text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-blue-400 outline-none"
                 {...register("message", {
                   required: "Az üzenet megadása kötelező!",
                 })}
@@ -131,11 +118,8 @@ export default function Contact() {
             >
               Üzenet küldése
             </button>
-
           </form>
-
         </div>
-
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import useWindowSize from "../hooks/useWindowSize";
+import useGreeting from "../hooks/useGreeting";
+import InfoCard from "../components/InfoCard";
 
 export default function Home() {
-  const width = useWindowSize();
+  const greeting = useGreeting();
 
   const [quote, setQuote] = useState(
     "A siker nem a tökéletességről szól, hanem a következetességről."
@@ -14,8 +15,8 @@ export default function Home() {
       .then((data) => {
         setQuote(data.quote);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        console.log("Nem sikerült betölteni az idézetet.");
       });
   }, []);
 
@@ -24,44 +25,27 @@ export default function Home() {
       <section className="grid md:grid-cols-2 gap-10 items-center">
         <div>
           <p className="text-blue-600 font-semibold mb-3">
-            Fitness webalkalmazás
+            {greeting}
           </p>
 
           <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-            Építs egészségesebb rutint a FitTrackkel!
+            FitTrack
           </h1>
 
-          <p className="text-lg text-slate-600 mt-6">
-            Edzésötletek, BMI kalkulátor és napi motiváció egy egyszerű,
-            reszponzív React alkalmazásban.
+          <p className="text-xl text-slate-700 mt-4 font-medium">
+            Egyszerű fitness alkalmazás.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition">
-              <p className="text-4xl mb-2">💪</p>
-              <h3 className="text-2xl font-bold text-blue-600">9</h3>
-              <p className="text-gray-500">Gyakorlat</p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition">
-              <p className="text-4xl mb-2">📊</p>
-              <h3 className="text-2xl font-bold text-green-600">BMI</h3>
-              <p className="text-gray-500">Kalkulátor</p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-lg p-5 text-center hover:scale-105 transition">
-              <p className="text-4xl mb-2">🔥</p>
-              <h3 className="text-2xl font-bold text-orange-600">24/7</h3>
-              <p className="text-gray-500">Motiváció</p>
-            </div>
-          </div>
+          <p className="text-lg text-slate-600 mt-6">
+            A FitTrack egy React és TypeScript alapú webalkalmazás, amely
+            edzésötleteket, BMI kalkulátort és egy külső API-ból érkező napi
+            motivációs idézetet kínál.
+          </p>
         </div>
 
         <div className="bg-white text-slate-900 rounded-3xl shadow-xl p-8 border">
-          <div className="text-7xl text-center mb-6">🏋️‍♀️</div>
-
           <h2 className="text-2xl font-bold mb-4">
-            🔥 Napi motiváció
+            Napi motiváció
           </h2>
 
           <p className="italic text-lg text-slate-700">
@@ -69,59 +53,36 @@ export default function Home() {
           </p>
 
           <p className="text-sm text-slate-400 mt-6">
-            Custom hook aktív: {width}px
+            Az idézet külső API segítségével töltődik be.
           </p>
         </div>
       </section>
 
       <section className="mt-20">
         <h2 className="text-4xl font-bold text-center mb-4">
-          Miért válaszd a FitTracket?
+          Az alkalmazás funkciói
         </h2>
 
         <p className="text-center text-slate-600 mb-10">
-          Egy egyszerű, átlátható és motiváló alkalmazás az egészségesebb
-          mindennapokhoz.
+          A projekt célja a React legfontosabb funkcióinak bemutatása egy
+          egyszerű fitness témájú alkalmazásban.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white text-slate-900 rounded-3xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
-            <p className="text-5xl mb-4">💪</p>
+          <InfoCard
+            title="Edzések"
+            description="Egyszerű, otthon is elvégezhető gyakorlatok újrahasznosítható komponensek segítségével."
+          />
 
-            <h3 className="text-2xl font-bold mb-3">
-              Otthoni edzések
-            </h3>
+          <InfoCard
+            title="BMI kalkulátor"
+            description="React Hook Form segítségével készült űrlap validációval és automatikus BMI számítással."
+          />
 
-            <p className="text-slate-600">
-              Egyszerű, eszköz nélkül is elvégezhető gyakorlatok kezdőknek és
-              haladóknak.
-            </p>
-          </div>
-
-          <div className="bg-white text-slate-900 rounded-3xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
-            <p className="text-5xl mb-4">📊</p>
-
-            <h3 className="text-2xl font-bold mb-3">
-              BMI kalkulátor
-            </h3>
-
-            <p className="text-slate-600">
-              Néhány adat megadásával gyorsan kiszámolhatod a BMI értékedet.
-            </p>
-          </div>
-
-          <div className="bg-white text-slate-900 rounded-3xl shadow-lg p-8 hover:-translate-y-2 transition duration-300">
-            <p className="text-5xl mb-4">🔥</p>
-
-            <h3 className="text-2xl font-bold mb-3">
-              Napi motiváció
-            </h3>
-
-            <p className="text-slate-600">
-              API-ból érkező idézet segít abban, hogy minden nap lendületben
-              maradj.
-            </p>
-          </div>
+          <InfoCard
+            title="Motiváció"
+            description="A főoldalon egy külső API-ból betöltött motivációs idézet jelenik meg."
+          />
         </div>
       </section>
     </main>
