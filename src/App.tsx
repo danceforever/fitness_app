@@ -21,7 +21,7 @@ function App() {
           : "min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 text-slate-900"
       }
     >
-      <BrowserRouter>
+<BrowserRouter basename="/fitness_app">
         <Navbar />
 
         <div className="max-w-6xl mx-auto px-6 pt-4 flex justify-end">
