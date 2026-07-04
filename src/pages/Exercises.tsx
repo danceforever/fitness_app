@@ -24,10 +24,11 @@ export default function Exercises() {
           💪 Edzések
         </h1>
 
-        <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
-          Válassz az egyszerű, otthon is könnyen elvégezhető gyakorlatok közül,
-          és építsd fel a saját edzésrutinodat.
-        </p>
+   <p className="text-slate-600 mt-4 max-w-2xl mx-auto">
+  Az oldalon néhány egyszerű, otthon is elvégezhető gyakorlat szerepel.
+  A cél nem egy teljes edzésterv készítése, hanem a komponensek és a
+  reszponzív kártyás elrendezés bemutatása.
+</p>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
