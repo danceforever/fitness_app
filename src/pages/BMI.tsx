@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useBMICalculator } from "../hooks/useBMICalculator";
 
 type FormData = {
   weight: number;
@@ -7,32 +7,17 @@ type FormData = {
 };
 
 export default function BMI() {
-  const [result, setResult] = useState<number | null>(null);
-  const [category, setCategory] = useState("");
 
+const { result, category, calculateBMI } = useBMICalculator();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    const heightInMeters = data.height / 100;
-    const bmi = data.weight / (heightInMeters * heightInMeters);
-    const roundedBMI = Number(bmi.toFixed(1));
-
-    setResult(roundedBMI);
-
-    if (roundedBMI < 18.5) {
-      setCategory("Sovány");
-    } else if (roundedBMI < 25) {
-      setCategory("Normál testsúly");
-    } else if (roundedBMI < 30) {
-      setCategory("Túlsúly");
-    } else {
-      setCategory("Elhízás");
-    }
-  };
+const onSubmit = (data: FormData) => {
+  calculateBMI(data.weight, data.height);
+};
 
   const resultStyle = () => {
     switch (category) {
