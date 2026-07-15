@@ -24,3 +24,22 @@ A FitTrack egy fitness témájú React alkalmazás, amely segít az egészséges
 
 ```bash
 npm install
+```
+
+## Fejlesztői szerver indítása
+
+```bash
+npm run dev
+```
+
+Az alkalmazás ezután a böngészőben a Vite által megadott címen érhető el (általában: http://localhost:5173).
+
+## Build készítése
+
+```bash
+npm run build
+```
+
+## Felhasznált API
+
+Az alkalmazás a DummyJSON Quotes API-t használja, amely véletlenszerű motivációs idézetet jelenít meg a főoldalon.
