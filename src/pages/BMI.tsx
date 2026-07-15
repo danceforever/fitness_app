@@ -7,17 +7,17 @@ type FormData = {
 };
 
 export default function BMI() {
+  const { result, category, calculateBMI } = useBMICalculator();
 
-const { result, category, calculateBMI } = useBMICalculator();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-const onSubmit = (data: FormData) => {
-  calculateBMI(data.weight, data.height);
-};
+  const onSubmit = (data: FormData) => {
+    calculateBMI(data.weight, data.height);
+  };
 
   const resultStyle = () => {
     switch (category) {
@@ -58,13 +58,25 @@ const onSubmit = (data: FormData) => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
+            <label
+              htmlFor="weight"
+              className="block font-semibold mb-2"
+            >
+              Testsúly (kg)
+            </label>
+
             <input
+              id="weight"
               type="number"
-              placeholder="Testsúly (kg)"
+              placeholder="Például: 70"
               className="w-full border rounded-xl p-4 focus:ring-2 focus:ring-blue-400 outline-none text-slate-900 bg-white"
               {...register("weight", {
                 required: "Add meg a testsúlyt!",
-                min: 20,
+                valueAsNumber: true,
+                min: {
+                  value: 20,
+                  message: "A testsúly legalább 20 kg legyen!",
+                },
               })}
             />
 
@@ -76,13 +88,25 @@ const onSubmit = (data: FormData) => {
           </div>
 
           <div>
+            <label
+              htmlFor="height"
+              className="block font-semibold mb-2"
+            >
+              Magasság (cm)
+            </label>
+
             <input
+              id="height"
               type="number"
-              placeholder="Magasság (cm)"
+              placeholder="Például: 170"
               className="w-full border rounded-xl p-4 focus:ring-2 focus:ring-blue-400 outline-none text-slate-900 bg-white"
               {...register("height", {
                 required: "Add meg a magasságot!",
-                min: 100,
+                valueAsNumber: true,
+                min: {
+                  value: 100,
+                  message: "A magasság legalább 100 cm legyen!",
+                },
               })}
             />
 
@@ -101,7 +125,7 @@ const onSubmit = (data: FormData) => {
           </button>
         </form>
 
-        {result && (
+        {result !== null && (
           <div
             className={`mt-8 border rounded-2xl p-6 text-center ${resultStyle()}`}
           >
